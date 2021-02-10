@@ -1,0 +1,14 @@
+# Logs
+logs
+*.log
+
+# Python cache
+__pycache__
+*.pyc
+
+# Secret files
+secrets.yaml
+www/dylan.png
+*.db
+.storage
+image
