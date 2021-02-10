@@ -1,0 +1,12 @@
+id: 4223ea35-e0f5-45a7-8b12-47211ff897da
+alias: Nouvelle version de home assistant
+trigger:
+- platform: state
+  entity_id: binary_sensor.updater
+  from: "off"
+  to: "on"
+action:
+- service: notify.notify
+  data:
+    message: 🏠 La version {{ state_attr('binary_sensor.updater', 'newest_version') }} de home assistant est disponible.
+    target: 3ff7d6cf4ed18895abe56a78c74faab4

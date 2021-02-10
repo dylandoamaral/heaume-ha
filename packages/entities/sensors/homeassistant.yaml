@@ -1,0 +1,17 @@
+platform: template
+sensors:
+  count_automations:
+    friendly_name: Automations
+    value_template: "{{ states.automation | list | length }}"
+  count_scripts:
+    friendly_name: Scripts
+    value_template: "{{ states.script| list | length }}"
+  count_sensors:
+    friendly_name: Sensors
+    value_template: "{{ states.sensor | list | length }}"
+  count_switches:
+    friendly_name: Switches
+    value_template: "{{ states.switch | list | length }}"
+  count_zones:
+    friendly_name: Zones
+    value_template: "{{ states.zone | list | length }}"

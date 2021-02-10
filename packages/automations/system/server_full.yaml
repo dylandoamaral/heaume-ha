@@ -1,0 +1,14 @@
+id: 545133e0-6245-4e41-87cd-3667e15546dd
+alias: Me notifier quand le serveur est trop plein
+description: ''
+trigger:
+- platform: numeric_state
+  entity_id: sensor.disk_use_percent_home
+  above: '75'
+condition: []
+action:
+- service: notify.mobile_app_iphone_de_dylan
+  data:
+    message: 💢 Le serveur home assistantest plein à plus de {{ trigger.above }}%
+    target: 3ff7d6cf4ed18895abe56a78c74faab4
+mode: single

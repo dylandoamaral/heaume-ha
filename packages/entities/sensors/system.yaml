@@ -1,0 +1,6 @@
+platform: systemmonitor
+scan_interval: 600
+resources:
+  - type: disk_use_percent
+    arg: /home
+  - type: processor_temperature
