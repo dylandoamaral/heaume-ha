@@ -7,10 +7,10 @@ organization: Heaume
 bucket: Plant
 token: !secret influxdb_token
 queries_flux:
-  - name: "Humidité de Veggie"
+  - name: "Veggie current moisture"
     unit_of_measurement: "%"
     query: >
       filter(fn: (r) => r._measurement == "veggie")
       |> sort(columns: ["_time"], desc: true)
       |> limit(n: 1)
-    range_start: "-1d"
+    range_start: "-1h"

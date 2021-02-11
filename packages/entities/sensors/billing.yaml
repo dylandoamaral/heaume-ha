@@ -1,0 +1,61 @@
+platform: influxdb
+scan_interval: 600
+api_version: 2
+host: !secret influxdb_host
+port: 443
+organization: Heaume
+bucket: Billing
+token: !secret influxdb_token
+queries_flux:
+  - name: "Last day billing"
+    unit_of_measurement: "$"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "price")
+      |> group(columns: ["_measurement"], mode:"by")
+      |> aggregateWindow(every: 1d, fn: sum, createEmpty: false)
+      |> limit(n: 1)
+    range_start: "-1d"
+  - name: "Current month billing"
+    unit_of_measurement: "$"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "price")
+      |> group(columns: ["_measurement"], mode:"by")
+      |> aggregateWindow(every: 1mo, fn: sum, createEmpty: false)
+      |> last()
+    range_start: "-1mo"
+  - name: "Last day most expensive service name"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "price")
+      |> aggregateWindow(every: 1d, fn: sum, createEmpty: false)
+      |> group(columns: ["_measurement"], mode:"by")
+      |> sort(desc: true)
+      |> limit(n: 1)
+      |> map(fn: (r) => ({ _value: r.service }))
+    range_start: "-1d"
+  - name: "Last day most expensive service price"
+    unit_of_measurement: "$"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "price")
+      |> aggregateWindow(every: 1d, fn: sum, createEmpty: false)
+      |> group(columns: ["_measurement"], mode:"by")
+      |> sort(desc: true)
+      |> limit(n: 1)
+    range_start: "-1d"
+  - name: "Current month most expensive service name"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "price")
+      |> aggregateWindow(every: 1mo, fn: sum, createEmpty: false)
+      |> group(columns: ["_measurement"], mode:"by")
+      |> sort(desc: true)
+      |> limit(n: 1)
+      |> map(fn: (r) => ({ _value: r.service }))
+    range_start: "-1mo"
+  - name: "Current month most expensive service price"
+    unit_of_measurement: "$"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "price")
+      |> aggregateWindow(every: 1mo, fn: sum, createEmpty: false)
+      |> group(columns: ["_measurement"], mode:"by")
+      |> sort(desc: true)
+      |> limit(n: 1)
+    range_start: "-1mo"
