@@ -1,0 +1,17 @@
+platform: template
+sensors:
+  hacs_updater:
+    friendly_name: "Updater HACS"
+    value_template: >-
+      {% if not is_state('sensor.hacs', '0') %}
+        on
+      {% else %}
+        off
+      {% endif %}
+    icon_template: >-
+      {% if not is_state('sensor.hacs', '0') %}
+        mdi:checkbox-blank-circle
+      {% else %}
+        hass:radiobox-blank
+      {% endif %}
+    unique_id: hacs_updater
