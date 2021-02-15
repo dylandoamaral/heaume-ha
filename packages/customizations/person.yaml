@@ -1,2 +1,4 @@
 person.dylan:
   entity_picture: "/local/faces/dylan.png"
+device_tracker.iphone_de_dylan:
+  entity_picture: "/local/faces/dylan.png"
