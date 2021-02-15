@@ -1,14 +1,14 @@
-id: '1612357227991'
-alias: Me notifier quand Veggie à soif
+id: '1612357227591'
+alias: Me notifier quand Veggie n'a plus batterie
 description: ''
 trigger:
 - platform: numeric_state
-  entity_id: sensor.veggie_current_moisture
-  below: '40'
+  entity_id: sensor.veggie_current_battery
+  below: '20'
 condition: []
 action:
 - service: notify.mobile_app_iphone_de_dylan
   data:
-    message: 🌱 Veggie a très soif
+    message: 🔋 Veggie n'a plus de batterie
     target: 3ff7d6cf4ed18895abe56a78c74faab4
 mode: single
