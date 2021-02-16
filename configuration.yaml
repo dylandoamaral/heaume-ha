@@ -1,4 +1,4 @@
 homeassistant:
   external_url: !secret dns_url
-  customize: !include_dir_merge_named packages/customizations
+  customize: !include_dir_merge_named packages/customizations/single
   packages: !include_dir_named packages/integrations
