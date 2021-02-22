@@ -1,14 +1,15 @@
+---
 id: c1759ac6-abd4-4fb3-b9cd-e933e4e557d3
 alias: Me notifier quand le serveur est trop chaud
 description: ''
 trigger:
-- platform: numeric_state
-  entity_id: sensor.processor_temperature
-  above: '60'
+  - platform: numeric_state
+    entity_id: sensor.processor_temperature
+    above: '60'
 condition: []
 action:
-- service: notify.mobile_app_iphone_de_dylan
-  data:
-    message: 🔥 Le serveur home assistant à dépasser les {{ trigger.above }}°C
-    target: 3ff7d6cf4ed18895abe56a78c74faab4
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: 🔥 Le serveur home assistant à dépasser les {{ trigger.above }}°C
+      target: 3ff7d6cf4ed18895abe56a78c74faab4
 mode: single
