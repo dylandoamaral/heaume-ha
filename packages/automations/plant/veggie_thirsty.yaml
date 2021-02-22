@@ -1,14 +1,15 @@
+---
 id: '1612357227991'
 alias: Me notifier quand Veggie à soif
 description: ''
 trigger:
-- platform: numeric_state
-  entity_id: sensor.veggie_current_moisture
-  below: '40'
+  - platform: numeric_state
+    entity_id: sensor.veggie_current_moisture
+    below: '40'
 condition: []
 action:
-- service: notify.mobile_app_iphone_de_dylan
-  data:
-    message: 🌱 Veggie a très soif
-    target: 3ff7d6cf4ed18895abe56a78c74faab4
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: 🌱 Veggie a très soif
+      target: 3ff7d6cf4ed18895abe56a78c74faab4
 mode: single

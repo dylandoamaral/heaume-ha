@@ -1,0 +1,34 @@
+---
+name: Heaume HA CI
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+  pull_request:
+
+jobs:
+  yamllint:
+    name: 🧹 yamllint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out configuration from GitHub
+        uses: actions/checkout@v1
+      - name: 🚀 Run yamllint
+        uses: frenck/action-yamllint@v1.0.1
+
+  home-assistant:
+    name: "🏠 Home Assistant Core ${{ matrix.version }} Configuration Check"
+    needs: [yamllint]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ["stable", "beta", "dev"]
+    steps:
+      - name: ⤵️ Check out configuration from GitHub
+        uses: actions/checkout@v2
+      - name: 🚀 Run Home Assistant Configuration Check
+        uses: frenck/action-home-assistant@v1.0.0
+        with:
+          path: "."
+          secrets: ./.mock/secrets.yaml
+          version: "${{ matrix.version }}"

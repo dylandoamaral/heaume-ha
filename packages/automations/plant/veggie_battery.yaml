@@ -1,14 +1,15 @@
+---
 id: '1612357227591'
 alias: Me notifier quand Veggie n'a plus batterie
 description: ''
 trigger:
-- platform: numeric_state
-  entity_id: sensor.veggie_current_battery
-  below: '20'
+  - platform: numeric_state
+    entity_id: sensor.veggie_current_battery
+    below: '20'
 condition: []
 action:
-- service: notify.mobile_app_iphone_de_dylan
-  data:
-    message: 🔋 Veggie n'a plus de batterie
-    target: 3ff7d6cf4ed18895abe56a78c74faab4
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: 🔋 Veggie n'a plus de batterie
+      target: 3ff7d6cf4ed18895abe56a78c74faab4
 mode: single
