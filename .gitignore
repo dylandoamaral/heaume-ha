@@ -7,7 +7,7 @@ __pycache__
 *.pyc
 
 # Secret files
-./secrets.yaml
+/secrets.yaml
 www/faces
 *.db
 .storage
