@@ -1,0 +1,9 @@
+---
+ble_monitor:
+  batt_entities: True
+  devices:
+    - mac: "A4:C1:38:51:7C:E5"
+      name: "Dylan Bedroom"
+      temperature_unit: C
+      decimals: 2
+      encryption_key: "5327A9A4F0EEB93CE14182FBB0FF476B"
