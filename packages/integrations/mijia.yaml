@@ -1,6 +1,6 @@
 ---
 ble_monitor:
-  batt_entities: True
+  batt_entities: true
   devices:
     - mac: "A4:C1:38:51:7C:E5"
       name: "Dylan Bedroom"
