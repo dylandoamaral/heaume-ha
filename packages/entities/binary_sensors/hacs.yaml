@@ -11,7 +11,7 @@ sensors:
       {% endif %}
     icon_template: >-
       {% if not is_state('sensor.hacs', '0') %}
-        mdi:checkbox-blank-circle
+        hass:checkbox-marked-circle
       {% else %}
         hass:radiobox-blank
       {% endif %}
