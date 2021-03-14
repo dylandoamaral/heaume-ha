@@ -16,8 +16,8 @@ action:
     notification_id: hacs-update
     message: >
       🏠 Home assistant community store a des mises à jours disponibles:
-      {% for repo in state_attr(trigger.entity_id, 'repositories') %}
-        {{ repo.display_name }} est disponible en version 
+      {% for r in state_attr(trigger.entity_id, 'repositories') %}
+        {{ repo.display_name }} est disponible en version
         {{ repo["available_version"] }}.
       {% endfor %}
     target: 3ff7d6cf4ed18895abe56a78c74faab4

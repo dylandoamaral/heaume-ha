@@ -11,6 +11,6 @@ action:
   - service: notify.mobile_app_iphone_de_dylan
     data:
       message: >
-        💢 Le serveur home assistantest plein à plus de
+        💢 Le serveur home assistant est plein à plus de
         {{ trigger.above }}%
       target: 3ff7d6cf4ed18895abe56a78c74faab4

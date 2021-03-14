@@ -11,5 +11,5 @@ action:
   - service: notify.mobile_app_iphone_de_dylan
     data:
       message: >
-        🔥 Le serveur home assistant à dépasser les {{ trigger.above }}°C
+        🔥 Le serveur home assistant a dépassé les {{ trigger.above }}°C
       target: 3ff7d6cf4ed18895abe56a78c74faab4
