@@ -1,5 +1,5 @@
 ---
-id: 4223ea35-e0f5-45a7-8b12-47211ff897da
+id: update_ha_available
 alias: Nouvelle version de home assistant
 trigger:
   - platform: state
@@ -7,7 +7,7 @@ trigger:
     from: "off"
     to: "on"
 action:
-  - service: notify.notify
+  - service: notify.mobile_app_iphone_de_dylan
     data:
       message: >
         🏠 La version {{ state_attr('binary_sensor.updater', 'newest_version') }}

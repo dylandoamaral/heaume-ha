@@ -1,5 +1,5 @@
 ---
-id: 545133e0-6245-4e41-87cd-3667e15546dd
+id: server_full
 alias: Me notifier quand le serveur est trop plein
 description: ''
 trigger:
@@ -14,4 +14,3 @@ action:
         💢 Le serveur home assistantest plein à plus de
         {{ trigger.above }}%
       target: 3ff7d6cf4ed18895abe56a78c74faab4
-mode: single

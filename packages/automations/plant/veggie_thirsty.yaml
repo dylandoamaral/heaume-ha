@@ -1,5 +1,5 @@
 ---
-id: '1612357227991'
+id: veggie_thirsty
 alias: Me notifier quand Veggie à soif
 description: ''
 trigger:
@@ -12,4 +12,3 @@ action:
     data:
       message: 🌱 Veggie a très soif
       target: 3ff7d6cf4ed18895abe56a78c74faab4
-mode: single
