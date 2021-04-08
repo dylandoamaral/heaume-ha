@@ -1,0 +1,16 @@
+---
+id: server_full_influxdb
+alias: Me notifier quand le serveur influxDB est trop plein
+description: ''
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.current_disk_usage_influxdb
+    above: '75'
+condition: []
+action:
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: >
+        💢 Le serveur influxDB est plein à plus de
+        {{ trigger.above }}%
+      target: 3ff7d6cf4ed18895abe56a78c74faab4

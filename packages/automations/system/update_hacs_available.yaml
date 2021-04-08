@@ -2,22 +2,20 @@
 id: update_hacs_available
 alias: Nouvelle version de home assistant community store
 trigger:
-  platform: state
-  entity_id: sensor.hacs
+  - platform: state
+    entity_id: sensor.hacs
 condition:
   - condition: template
-    value_template: "{{ states(trigger.entity_id) != 'unknown'}}"
+    value_template: "{{ states('sensor.hacs') != 'unknown'}}"
   - condition: template
-    value_template: "{{ (states(trigger.entity_id) | float) != 0}}"
+    value_template: "{{ (states('sensor.hacs') | float) != 0}}"
 action:
-  service: notify.mobile_app_iphone_de_dylan
-  data_template:
-    title: Updates pending in HACS
-    notification_id: hacs-update
-    message: >
-      🏠 Home assistant community store a des mises à jours disponibles:
-      {% for repo in state_attr(trigger.entity_id, 'repositories') %}
-        {{ repo.display_name }} est disponible en version 
-        {{ repo["available_version"] }}.
-      {% endfor %}
-    target: 3ff7d6cf4ed18895abe56a78c74faab4
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: >
+        🏠 Home assistant community store a des mises à jours disponibles:
+        {% for repo in state_attr('sensor.hacs', 'repositories') %}
+          {{ repo.display_name }} est disponible en version 
+          {{ repo["available_version"] }}.
+        {% endfor %}
+      target: 3ff7d6cf4ed18895abe56a78c74faab4

@@ -1,0 +1,16 @@
+---
+id: server_memory_influxdb
+alias: Me notifier quand le serveur influxDB utilise trop de memoire
+description: ''
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.current_memory_usage_influxdb
+    above: '75'
+condition: []
+action:
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: >
+        💢 Le serveur influxDB utilise plus de
+        {{ trigger.above }}% de sa memoire
+      target: 3ff7d6cf4ed18895abe56a78c74faab4

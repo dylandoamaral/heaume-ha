@@ -1,0 +1,15 @@
+---
+id: server_load_influxdb
+alias: Me notifier quand la charge du serveur influxDB est trop élever
+description: ''
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.current_load5_influxdb
+    above: '100'
+condition: []
+action:
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: >
+        🏋️ La charge du serveur influxDB à dépasser les {{ trigger.above }}%
+      target: 3ff7d6cf4ed18895abe56a78c74faab4
