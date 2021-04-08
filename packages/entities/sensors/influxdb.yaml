@@ -1,0 +1,86 @@
+---
+platform: influxdb
+scan_interval: 600
+api_version: 2
+host: !secret influxdb_host
+port: 443
+organization: Heaume
+bucket: InfluxDB
+token: !secret influxdb_token
+queries_flux:
+  - name: "Total memory influxdb"
+    unit_of_measurement: "GB"
+    query: >
+      filter(fn: (r) => r._measurement == "mem")
+      |> filter(fn: (r) => r._field == "total")
+      |> last()
+      |> map(fn: (r) => ({r with _value: float(v: r._value) / 1024.0 / 1024.0 / 1024.0}))
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
+  - name: "Total cpu influxdb"
+    unit_of_measurement: "cpus"
+    query: >
+      filter(fn: (r) => r._measurement == "system")
+      |> filter(fn: (r) => r._field == "n_cpus")
+      |> last()
+    range_start: "-1h"
+  - name: "Total disk influxdb"
+    unit_of_measurement: "GB"
+    query: >
+      filter(fn: (r) => r._measurement == "disk")
+      |> filter(fn: (r) => r._field == "total")
+      |> last()
+      |> map(fn: (r) => ({r with _value: float(v: r._value) / 1024.0 / 1024.0 / 1024.0}))
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
+  - name: "Current cpu usage influxdb"
+    unit_of_measurement: "%"
+    query: >
+      filter(fn: (r) => r._measurement == "cpu")
+      |> filter(fn: (r) => r._field == "usage_idle")
+      |> last()
+    range_start: "-1h"
+    value_template: '{{ ( 100.0 - value | float ) | round(2) }}'
+  - name: "Current memory usage influxdb"
+    unit_of_measurement: "%"
+    query: >
+      filter(fn: (r) => r._measurement == "mem")
+      |> filter(fn: (r) => r._field == "used_percent")
+      |> last()
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
+  - name: "Current disk usage influxdb"
+    unit_of_measurement: "%"
+    query: >
+      filter(fn: (r) => r._measurement == "disk")
+      |> filter(fn: (r) => r._field == "used_percent")
+      |> last()
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
+  - name: "Current load1 influxdb"
+    unit_of_measurement: "%"
+    query: >
+      filter(fn: (r) => r._measurement == "system")
+      |> filter(fn: (r) => r._field == "load1")
+      |> last()
+      |> map(fn: (r) => ({r with _value: float(v: r._value) * 100.0}))
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
+  - name: "Current load5 influxdb"
+    unit_of_measurement: "%"
+    query: >
+      filter(fn: (r) => r._measurement == "system")
+      |> filter(fn: (r) => r._field == "load5")
+      |> last()
+      |> map(fn: (r) => ({r with _value: float(v: r._value) * 100.0}))
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
+  - name: "Current load15 influxdb"
+    unit_of_measurement: "%"
+    query: >
+      filter(fn: (r) => r._measurement == "system")
+      |> filter(fn: (r) => r._field == "load15")
+      |> last()
+      |> map(fn: (r) => ({r with _value: float(v: r._value) * 100.0}))
+    range_start: "-1h"
+    value_template: '{{ value | round(2) }}'
