@@ -1,0 +1,47 @@
+---
+platform: influxdb
+scan_interval: 600
+api_version: 2
+host: !secret influxdb_host
+port: 443
+organization: Heaume
+bucket: Activity
+token: !secret influxdb_token
+queries_flux:
+  - name: "Last day wakatime"
+    unit_of_measurement: "second"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "duration")
+      |> filter(fn: (r) => r["provider"] == "wakatime")
+      |> group(columns: ["_measurement"], mode:"by")
+      |> aggregateWindow(every: 1d, fn: sum, createEmpty: false)
+      |> limit(n: 1)
+    range_start: "-1d"
+  - name: "Last week wakatime"
+    unit_of_measurement: "second"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "duration")
+      |> filter(fn: (r) => r["provider"] == "wakatime")
+      |> group(columns: ["_measurement"], mode:"by")
+      |> window(every: 1w, offset: 4d, createEmpty: false)
+      |> sum()
+      |> duplicate(column: "_stop", as: "_time")
+      |> window(every: inf)
+      |> limit(n: 2)
+      |> last()
+    range_start: "-2w"
+  - name: "Last week most time consuming project wakatime"
+    query: >
+      filter(fn: (r) => r["_measurement"] == "duration")
+      |> filter(fn: (r) => r["provider"] == "wakatime")
+      |> window(every: 1w, offset: 4d, createEmpty: false)
+      |> sum()
+      |> group(columns: ["_start"], mode:"by")
+      |> sort(desc: true)
+      |> limit(n: 1)
+      |> duplicate(column: "_stop", as: "_time")
+      |> window(every: inf)
+      |> limit(n: 2)
+      |> last()
+      |> map(fn: (r) => ({ _value: r.project }))
+    range_start: "-2w"
