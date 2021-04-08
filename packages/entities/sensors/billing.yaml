@@ -29,7 +29,7 @@ queries_flux:
       filter(fn: (r) => r["_measurement"] == "price")
       |> aggregateWindow(every: 1d, fn: sum, createEmpty: false)
       |> group(columns: ["_measurement"], mode:"by")
-      |> sort(desc: true)
+      |> sort(desc: true, columns: ["_time", "_value"])
       |> limit(n: 1)
       |> map(fn: (r) => ({ _value: r.service }))
     range_start: "-1d"
@@ -39,7 +39,7 @@ queries_flux:
       filter(fn: (r) => r["_measurement"] == "price")
       |> aggregateWindow(every: 1d, fn: sum, createEmpty: false)
       |> group(columns: ["_measurement"], mode:"by")
-      |> sort(desc: true)
+      |> sort(desc: true, columns: ["_time", "_value"])
       |> limit(n: 1)
     range_start: "-1d"
     value_template: '{{ value | round(2) }}'
@@ -48,7 +48,7 @@ queries_flux:
       filter(fn: (r) => r["_measurement"] == "price")
       |> aggregateWindow(every: 1mo, fn: sum, createEmpty: false)
       |> group(columns: ["_measurement"], mode:"by")
-      |> sort(desc: true)
+      |> sort(desc: true, columns: ["_time", "_value"])
       |> limit(n: 1)
       |> map(fn: (r) => ({ _value: r.service }))
     range_start: "-1mo"
@@ -58,7 +58,7 @@ queries_flux:
       filter(fn: (r) => r["_measurement"] == "price")
       |> aggregateWindow(every: 1mo, fn: sum, createEmpty: false)
       |> group(columns: ["_measurement"], mode:"by")
-      |> sort(desc: true)
+      |> sort(desc: true, columns: ["_time", "_value"])
       |> limit(n: 1)
     range_start: "-1mo"
     value_template: '{{ value | round(2) }}'
