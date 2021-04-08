@@ -9,6 +9,7 @@ __pycache__
 # Secret files
 /secrets.yaml
 www/faces
+www/uptime-card-test.js
 *.db
 .storage
 image
