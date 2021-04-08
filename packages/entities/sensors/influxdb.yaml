@@ -14,7 +14,9 @@ queries_flux:
       filter(fn: (r) => r._measurement == "mem")
       |> filter(fn: (r) => r._field == "total")
       |> last()
-      |> map(fn: (r) => ({r with _value: float(v: r._value) / 1024.0 / 1024.0 / 1024.0}))
+      |> map(fn: (r) =>
+       ({r with _value: float(v: r._value) / 1024.0 / 1024.0 / 1024.0})
+      )
     range_start: "-1h"
     value_template: '{{ value | round(2) }}'
   - name: "Total cpu influxdb"
@@ -30,7 +32,9 @@ queries_flux:
       filter(fn: (r) => r._measurement == "disk")
       |> filter(fn: (r) => r._field == "total")
       |> last()
-      |> map(fn: (r) => ({r with _value: float(v: r._value) / 1024.0 / 1024.0 / 1024.0}))
+      |> map(fn: (r) =>
+       ({r with _value: float(v: r._value) / 1024.0 / 1024.0 / 1024.0})
+      )
     range_start: "-1h"
     value_template: '{{ value | round(2) }}'
   - name: "Current cpu usage influxdb"
