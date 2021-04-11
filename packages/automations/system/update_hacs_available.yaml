@@ -15,7 +15,8 @@ action:
       message: >
         🏠 Home assistant community store a des mises à jours disponibles:
         {% for repo in state_attr('sensor.hacs', 'repositories') %}
-          {{ repo.display_name }} est disponible en version
-           {{ repo["available_version"] }}.
+        
+        - {{ repo.display_name }} est disponible en version
+        {{ repo["available_version"] }}.
         {% endfor %}
       target: 3ff7d6cf4ed18895abe56a78c74faab4
