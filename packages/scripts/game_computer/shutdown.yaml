@@ -1,0 +1,7 @@
+---
+alias: "Game Compute - Shutdown"
+sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/desktop-kefov01/commands/shutdown"
+        payload: ""
