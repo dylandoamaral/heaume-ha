@@ -1,0 +1,18 @@
+---
+id: automation_dylan_bedroom_motion_detected
+alias: Me notifier quand le serveur influxDB est trop plein
+description: 'Notify me when someone is inside my room when I am not here.'
+trigger:
+  - platform: state
+    entity_id: binary_sensor.hue_motion_sensor_1_motion
+    to: "on"
+    for: "00:02:00"   
+condition:
+  - condition: state
+    entity_id: "device_tracker.iphone_de_dylan"
+    state: "not_home"
+action:
+  - service: notify.mobile_app_iphone_de_dylan
+    data:
+      message: "👀 Quelqu'un est dans votre chambre !"
+      target: 3ff7d6cf4ed18895abe56a78c74faab4
