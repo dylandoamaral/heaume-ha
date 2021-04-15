@@ -1,0 +1,145 @@
+title: Maison
+path: maison
+badges:
+  - entity: person.dylan
+cards:
+  - type: vertical-stack
+    title: "\U0001F468‍\U0001F469‍\U0001F467‍\U0001F466 Accueil"
+    cards:
+      - type: 'custom:weather-card'
+        entity: weather.home
+        number_of_forecasts: '5'
+  - type: vertical-stack
+    title: "\U0001F6CF️️ Chambre de Dylan"
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: binary_sensor.game_compute_connected
+            name: Ordinateur
+            icon: mdi:desktop-classic
+            show_state: true
+            tap_action: 
+                action: call-service
+                service: script.shutdown
+            lock:
+                enabled: '[[[ return entity.state !== "on"; ]]]'
+                exemptions: []
+            styles:
+                card:
+                  - padding: 10px
+                grid:
+                  - grid-template-areas: '"i" "n" "s"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: 60px min-content min-content
+                img_cell:
+                  - justify-content: start
+                  - margin: none
+                  - margin-left: -7px
+                  - margin-top: -17px
+                icon:
+                  - width: 40px
+                  - position: left
+                name:
+                  - justify-self: start
+                  - font-weight: bold
+                state:
+                  - justify-self: start
+                  - font-size: 12px
+            state:
+                - value: 'off'
+                  styles:
+                    card:
+                      - filter: opacity(50%)
+                    icon:
+                      - filter: grayscale(100%)
+          - type: custom:decluttering-card
+            template: light
+            variables:
+             - name: Lumières
+             - entity: group.bedroom_dylan_light
+             - icon: mdi:lightbulb
+          - type: custom:button-card
+            entity: binary_sensor.hue_motion_sensor_1_motion
+            name: Mouvement
+            icon: mdi:run
+            show_state: true
+            tap_action: 
+                action: call-service
+                service: notify.alexa_media
+                service_data:
+                    message: "Faites attention à ne rien casser dans la chambre de monsieur."
+                    data:
+                        type: tts
+                    target:
+                        media_player.echo_dot_dylan
+            styles:
+                card:
+                  - padding: 10px
+                grid:
+                  - grid-template-areas: '"i" "n" "s"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: 60px min-content min-content
+                img_cell:
+                  - justify-content: start
+                  - margin: none
+                  - margin-left: -7px
+                  - margin-top: -17px
+                icon:
+                  - width: 40px
+                  - position: left
+                name:
+                  - justify-self: start
+                  - font-weight: bold
+                state:
+                  - justify-self: start
+                  - font-size: 12px
+            state:
+                - value: 'off'
+                  styles:
+                    card:
+                      - filter: opacity(50%)
+                    icon:
+                      - filter: grayscale(100%)
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: Temperature
+            entities:
+              - sensor.ble_temperature_dylan_bedroom
+            line_color: ' #f56f42'
+            line_width: 10
+            font_size: 75
+            points_per_hour: 1
+            animate: true
+          - type: 'custom:mini-graph-card'
+            name: Humidité
+            entities:
+              - sensor.ble_humidity_dylan_bedroom
+            line_color: ' #429bf5'
+            line_width: 10
+            font_size: 75
+            points_per_hour: 1
+            animate: true
+          - type: 'custom:mini-graph-card'
+            name: Battery
+            entities:
+              - sensor.ble_battery_dylan_bedroom
+            line_color: ' #FFE033'
+            line_width: 10
+            font_size: 75
+            points_per_hour: 1
+            animate: true
+      - type: entities
+        entities:
+          - entity: sensor.veggie_current_moisture
+            type: 'custom:multiple-entity-row'
+            name: Veggie
+            secondary_info: last-changed
+            icon: 'mdi:sprout'
+            show_state: false
+            entities:
+              - entity: sensor.veggie_current_moisture
+                name: Humidité
+              - entity: sensor.veggie_current_battery
+                name: Batterie

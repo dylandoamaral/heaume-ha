@@ -1,0 +1,202 @@
+title: Serveur
+path: serveur
+icon: ''
+badges:
+  - entity: binary_sensor.rpi_power_status
+  - entity: binary_sensor.updater
+  - entity: binary_sensor.hacs_updater
+cards:
+  - type: vertical-stack
+    title: ❤️ Healthchecks
+    cards:
+      - type: 'custom:uptime-card'
+        entity: binary_sensor.ping_dylan_doamaral_dev
+        icon: 'mdi:heart'
+        name: dylan.doamaral.dev
+        severity: 100
+        hours_to_show: 168
+        ok: 'on'
+        alias:
+          ok: Connecté
+          ko: Non connecté
+        tooltip:
+          hour24: true
+        status_adaptive_color: true
+        bar:
+          spacing: 8
+          amount: 46
+        tap_action:
+          action: url
+          url: 'https://dylan.doamaral.dev/'
+      - type: 'custom:uptime-card-test'
+        entity: binary_sensor.ping_influx_doamaral_dev
+        icon: 'mdi:heart'
+        severity: 100
+        hours_to_show: 168
+        name: influx.doamaral.dev
+        ok: 'on'
+        alias:
+          ok: Connecté
+          ko: Non connecté
+        status_adaptive_color: true
+        tooltip:
+          hour24: true
+        bar:
+          spacing: 8
+          amount: 46
+        tap_action:
+          action: url
+          url: 'https://influx.doamaral.dev/'
+  - type: vertical-stack
+    title: "\U0001F6E1️ AD Guard stats"
+    cards:
+      - type: button
+        tap_action:
+          action: toggle
+        entity: switch.adguard_protection
+        name: AdGuard
+        icon_height: 50px
+      - type: glance
+        entities:
+          - entity: sensor.adguard_dns_queries
+            name: Requêtes
+          - entity: sensor.adguard_dns_queries_blocked
+            name: Requêtes bloquées
+          - entity: sensor.adguard_average_processing_speed
+            name: Processing speed
+  - type: vertical-stack
+    title: "\U0001F5A5️ Serveur Home assistant"
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.processor_temperature
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+          - type: gauge
+            entity: sensor.disk_use_percent_home
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: Ping
+            entities:
+              - sensor.speedtest_ping
+            line_color: '#80C884'
+            line_width: 10
+            font_size: 75
+            points_per_hour: 1
+            animate: true
+            hour24: true
+          - type: 'custom:mini-graph-card'
+            name: Download
+            icon: 'mdi:arrow-down-bold'
+            entities:
+              - sensor.speedtest_download
+            line_color: '#64F0E6'
+            line_width: 10
+            font_size: 75
+            points_per_hour: 1
+            animate: true
+            hour24: true
+          - type: 'custom:mini-graph-card'
+            name: Upload
+            icon: 'mdi:arrow-up-bold'
+            entities:
+              - sensor.speedtest_upload
+            line_color: '#BF71FF'
+            line_width: 10
+            font_size: 75
+            points_per_hour: 1
+            animate: true
+      - type: glance
+        entities:
+          - entity: sensor.count_sensors
+            name: Capteurs
+            icon: 'mdi:access-point'
+          - entity: sensor.count_switches
+            name: Interrupteurs
+            icon: 'mdi:toggle-switch'
+          - entity: sensor.count_automations
+            name: Automatisations
+            icon: 'mdi:robot'
+          - entity: sensor.count_scripts
+            name: Scripts
+            icon: 'mdi:script'
+          - entity: sensor.count_zones
+            name: Zones
+            icon: 'mdi:map-marker'
+        state_color: false
+  - type: vertical-stack
+    title: "\U0001F30D Serveur InfluxDB"
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.total_memory_influxdb
+            name: Memory
+            icon: '" "'
+          - type: entity
+            entity: sensor.total_disk_influxdb
+            name: Disk Size
+            icon: '" "'
+          - type: entity
+            entity: sensor.total_cpu_influxdb
+            icon: '" "'
+            name: Cpu
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.current_memory_usage_influxdb
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+            name: Memory use
+          - type: gauge
+            entity: sensor.current_disk_usage_influxdb
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+            name: Disk use
+          - type: gauge
+            entity: sensor.current_cpu_usage_influxdb
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+            name: Cpu use
+      - type: 'custom:mini-graph-card'
+        icon: 'mdi:desktop-classic'
+        name: System load
+        entities:
+          - entity: sensor.current_load1_influxdb
+            name: LOAD1
+            color: '#FFEC33'
+          - entity: sensor.current_load5_influxdb
+            name: LOAD5
+            color: '#FF9333'
+          - entity: sensor.current_load15_influxdb
+            name: LOAD15
+            color: '#FF5533'
+        line_width: 3
+        font_size: 75
+        points_per_hour: 1
+        animate: true
+        hour24: true

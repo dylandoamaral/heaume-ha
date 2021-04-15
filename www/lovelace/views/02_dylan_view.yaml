@@ -1,0 +1,93 @@
+title: Dylan
+path: dylan
+badges:
+  - entity: person.dylan
+cards:
+  - type: vertical-stack
+    title: "\U0001F468‍\U0001F4BB Wakatime monitoring"
+    cards:
+      - type: entity
+        entity: sensor.last_week_most_time_consuming_project_wakatime
+        name: Projet de la semaine dernière
+        hour24: true
+        icon: 'mdi:star'
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.last_day_wakatime_hour
+            name: Temps hier
+            icon: ' '
+          - type: entity
+            entity: sensor.last_week_wakatime_hour
+            name: Temps semaine dernière
+            icon: ' '
+      - type: 'custom:mini-graph-card'
+        name: Temps passé à programmer par jour
+        entities:
+          - sensor.last_day_wakatime_per_minutes
+        line_color: '#64F0E6'
+        line_width: 3
+        font_size: 75
+        points_per_hour: 0.0416666666666667
+        animate: true
+        hour24: true
+        hours_to_show: 167
+        decimals: 0
+        unit: minutes
+        group_by: date
+        icon: 'mdi:clock'
+  - type: vertical-stack
+    title: ☁️ Facturation AWS
+    cards:
+      - type: entities
+        entities:
+          - entity: sensor.last_day_most_expensive_service_price
+            type: 'custom:multiple-entity-row'
+            name: Service coûteux
+            secondary_info: hier
+            icon: 'mdi:cash'
+            entities:
+              - entity: sensor.last_day_most_expensive_service_name
+                name: false
+          - entity: sensor.current_month_most_expensive_service_price
+            type: 'custom:multiple-entity-row'
+            name: Service coûteux
+            secondary_info: ce mois-ci
+            icon: 'mdi:cash-multiple'
+            entities:
+              - entity: sensor.current_month_most_expensive_service_name
+                name: false
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            name: Facturation journalière
+            icon: 'mdi:chart-bar'
+            entities:
+              - entity: sensor.last_day_billing
+                name: Facturation journalière
+            line_color: '#F0B80F'
+            line_width: 7
+            font_size: 75
+            points_per_hour: 0.0416666666666667
+            animate: true
+            hour24: true
+            hours_to_show: 167
+            decimals: 8
+            group_by: date
+            show:
+              graph: bar
+          - type: 'custom:mini-graph-card'
+            name: Facturation cumulée
+            icon: 'mdi:chart-line'
+            entities:
+              - entity: sensor.current_month_billing
+                name: Facturation mensuelle
+            line_color: '#F0B80F'
+            line_width: 7
+            font_size: 75
+            points_per_hour: 0.0416666666666667
+            animate: true
+            hour24: true
+            hours_to_show: 167
+            group_by: date
+            decimals: 8
