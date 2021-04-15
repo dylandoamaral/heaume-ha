@@ -6,7 +6,7 @@ trigger:
   - platform: state
     entity_id: binary_sensor.hue_motion_sensor_1_motion
     to: "on"
-    for: "00:02:00"   
+    for: "00:02:00"
 condition:
   - condition: state
     entity_id: "device_tracker.iphone_de_dylan"

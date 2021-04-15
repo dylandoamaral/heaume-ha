@@ -1,9 +1,9 @@
+---
 title: Heaume
 
 decluttering_templates: !include_dir_named www/lovelace/decluttering_templates
 
-views: 
+views:
   - !include www/lovelace/views/00_home_view.yaml
-  - !include www/lovelace/views/01_server_view.yaml                                          
+  - !include www/lovelace/views/01_server_view.yaml
   - !include www/lovelace/views/02_dylan_view.yaml
- 

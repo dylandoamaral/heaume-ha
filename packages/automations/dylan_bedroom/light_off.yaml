@@ -6,21 +6,21 @@ trigger:
   - platform: state
     entity_id: binary_sensor.hue_motion_sensor_1_motion
     to: "off"
-    for: "00:05:00"  
+    for: "00:05:00"
 condition:
-    condition: and
-    conditions:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: light.hue_white_lamp_1
-            state: "on"
-          - condition: state
-            entity_id: light.hue_white_lamp_3
-            state: "on"
-      - condition: numeric_state
-        entity_id: sensor.hue_motion_sensor_1_light_level
-        above: 100
+  condition: and
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.hue_white_lamp_1
+          state: "on"
+        - condition: state
+          entity_id: light.hue_white_lamp_3
+          state: "on"
+    - condition: numeric_state
+      entity_id: sensor.hue_motion_sensor_1_light_level
+      above: 100
 action:
   - service: light.turn_off
     target:

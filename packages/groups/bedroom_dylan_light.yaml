@@ -1,3 +1,4 @@
+---
 name: Bedroom Dylan Light
 entities:
   - light.hue_white_lamp_1

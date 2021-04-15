@@ -1,3 +1,4 @@
+---
 - url: /hacsfiles/button-card/button-card.js
   type: module
 - url: /hacsfiles/decluttering-card/decluttering-card.js

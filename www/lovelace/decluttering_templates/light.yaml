@@ -1,34 +1,35 @@
+---
 card:
-    type: custom:button-card
-    entity: '[[entity]]'
-    name: '[[name]]'
-    icon: '[[icon]]'
-    show_state: true
-    styles:
-        card:
-          - padding: 10px
-        grid:
-          - grid-template-areas: '"i" "n" "s"'
-          - grid-template-columns: 1fr
-          - grid-template-rows: 60px min-content min-content
-        img_cell:
-          - justify-content: start
-          - margin: none
-          - margin-left: -7px
-          - margin-top: -17px
-        icon:
-          - width: 40px
-          - position: left
-        name:
-          - justify-self: start
-          - font-weight: bold
-        state:
-          - justify-self: start
-          - font-size: 12px
+  type: custom:button-card
+  entity: '[[entity]]'
+  name: '[[name]]'
+  icon: '[[icon]]'
+  show_state: true
+  styles:
+    card:
+      - padding: 10px
+    grid:
+      - grid-template-areas: '"i" "n" "s"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 60px min-content min-content
+    img_cell:
+      - justify-content: start
+      - margin: none
+      - margin-left: -7px
+      - margin-top: -17px
+    icon:
+      - width: 40px
+      - position: left
+    name:
+      - justify-self: start
+      - font-weight: bold
     state:
-        - value: 'off'
-          styles:
-            card:
-              - filter: opacity(50%)
-            icon:
-              - filter: grayscale(100%)
+      - justify-self: start
+      - font-size: 12px
+  state:
+    - value: 'off'
+      styles:
+        card:
+          - filter: opacity(50%)
+        icon:
+          - filter: grayscale(100%)
