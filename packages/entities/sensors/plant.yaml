@@ -15,13 +15,6 @@ queries_flux:
       |> sort(columns: ["_time"], desc: true)
       |> limit(n: 1)
     range_start: "-1h"
-  - name: "Veggie current luminosity"
-    unit_of_measurement: "%"
-    query: >
-      filter(fn: (r) => r._measurement == "luminosity" and r.name == "veggie")
-      |> sort(columns: ["_time"], desc: true)
-      |> limit(n: 1)
-    range_start: "-1h"
   - name: "Veggie current battery"
     unit_of_measurement: "%"
     query: >
