@@ -1,12 +1,11 @@
 ---
-id: automation_dylan_bedroom_light_off
-alias: Etteindre les lumières de la chambre de Dylan
-description: "Turn off my hue light automatically."
+id: automation_dylan_bedroom_light_off_light
+alias: Etteindre les lumières de la chambre de Dylan quand lumineux.
+description: "Turn off my hue light automatically when light."
 trigger:
-  - platform: state
-    entity_id: binary_sensor.hue_motion_sensor_1_motion
-    to: "off"
-    for: "00:15:00"
+  - platform: numeric_state
+    entity_id: sensor.hue_motion_sensor_1_light_level
+    above: 100
 condition:
   condition: and
   conditions:

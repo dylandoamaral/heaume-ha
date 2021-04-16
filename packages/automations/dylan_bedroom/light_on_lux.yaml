@@ -1,11 +1,11 @@
 ---
-id: automation_dylan_bedroom_light_on
-alias: Allumer les lumières de la chambre de Dylan
-description: "Turn on my hue light automatically."
+id: automation_dylan_bedroom_light_on_lux
+alias: Allumer les lumières de la chambre de Dylan quand sombre.
+description: "Turn on my hue light automatically when dark."
 trigger:
-  - platform: state
-    entity_id: binary_sensor.hue_motion_sensor_1_motion
-    to: "on"
+  - platform: numeric_state
+    entity_id: sensor.hue_motion_sensor_1_light_level
+    below: 100
 condition:
   condition: and
   conditions:
@@ -17,9 +17,9 @@ condition:
         - condition: state
           entity_id: light.hue_white_lamp_3
           state: "off"
-    - condition: numeric_state
-      entity_id: sensor.hue_motion_sensor_1_light_level
-      below: 100
+    - condition: state
+      entity_id: binary_sensor.hue_motion_sensor_1_motion
+      state: "on"
     - condition: time
       before: "21:30:00"
       after: "10:00:00"
