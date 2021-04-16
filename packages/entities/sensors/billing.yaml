@@ -1,6 +1,6 @@
 ---
 platform: influxdb
-scan_interval: 600
+scan_interval: 21600
 api_version: 2
 host: !secret influxdb_host
 port: 443
@@ -42,7 +42,7 @@ queries_flux:
       |> sort(desc: true, columns: ["_time", "_value"])
       |> limit(n: 1)
     range_start: "-1d"
-    value_template: '{{ value | round(2) }}'
+    value_template: "{{ value | round(2) }}"
   - name: "Current month most expensive service name"
     query: >
       filter(fn: (r) => r["_measurement"] == "price")
@@ -61,4 +61,4 @@ queries_flux:
       |> sort(desc: true, columns: ["_time", "_value"])
       |> limit(n: 1)
     range_start: "-1mo"
-    value_template: '{{ value | round(2) }}'
+    value_template: "{{ value | round(2) }}"

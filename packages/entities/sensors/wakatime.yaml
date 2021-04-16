@@ -1,6 +1,6 @@
 ---
 platform: influxdb
-scan_interval: 600
+scan_interval: 21600
 api_version: 2
 host: !secret influxdb_host
 port: 443
