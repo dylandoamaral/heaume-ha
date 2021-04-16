@@ -70,22 +70,30 @@ cards:
     cards:
       - type: horizontal-stack
         cards:
-          - type: gauge
-            entity: sensor.processor_temperature
-            min: 0
-            max: 100
-            severity:
-              green: 0
-              yellow: 50
-              red: 80
-          - type: gauge
-            entity: sensor.disk_use_percent_home
-            min: 0
-            max: 100
-            severity:
-              green: 0
-              yellow: 50
-              red: 80
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: Memory use
+              - entity: sensor.memory_use_percent
+              - color: "#7A2DCC"
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: Disk use
+              - entity: sensor.disk_use_percent_home
+              - color: "#CC752D"
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: CPU use
+              - entity: sensor.processor_use_percent
+              - color: "#2DCC92"
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: CPU temperature
+              - entity: sensor.processor_temperature
+              - color: "#2D95CC"
       - type: horizontal-stack
         cards:
           - type: "custom:mini-graph-card"
@@ -156,33 +164,24 @@ cards:
             name: Cpu
       - type: horizontal-stack
         cards:
-          - type: gauge
-            entity: sensor.current_memory_usage_influxdb
-            min: 0
-            max: 100
-            severity:
-              green: 0
-              yellow: 50
-              red: 80
-            name: Memory use
-          - type: gauge
-            entity: sensor.current_disk_usage_influxdb
-            min: 0
-            max: 100
-            severity:
-              green: 0
-              yellow: 50
-              red: 80
-            name: Disk use
-          - type: gauge
-            entity: sensor.current_cpu_usage_influxdb
-            min: 0
-            max: 100
-            severity:
-              green: 0
-              yellow: 50
-              red: 80
-            name: Cpu use
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: Memory use
+              - entity: sensor.current_memory_usage_influxdb
+              - color: "#7A2DCC"
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: Disk use
+              - entity: sensor.current_disk_usage_influxdb
+              - color: "#CC752D"
+          - type: custom:decluttering-card
+            template: vertical_bar
+            variables:
+              - name: CPU use
+              - entity: sensor.current_cpu_usage_influxdb
+              - color: "#2DCC92"
       - type: "custom:mini-graph-card"
         icon: "mdi:desktop-classic"
         name: System load

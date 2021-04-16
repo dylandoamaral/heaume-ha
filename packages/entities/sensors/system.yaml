@@ -5,3 +5,5 @@ resources:
   - type: disk_use_percent
     arg: /home
   - type: processor_temperature
+  - type: processor_use
+  - type: memory_use_percent

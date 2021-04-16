@@ -1,0 +1,23 @@
+---
+card:
+  type: "custom:bar-card"
+  entities:
+    - "[[entity]]"
+  name: "[[name]]"
+  direction: up
+  height: 110px
+  stack: horizontal
+  animation:
+    state: true
+  positions:
+    icon: false
+    indicator: false
+  severity:
+    - color: "[[color]]"
+      from: 0
+      to: 100
+  card_mod:
+    style: |
+      .card-content {
+        padding: 0px
+      }

@@ -15,3 +15,7 @@
   type: module
 - url: /local/uptime-card-test.js
   type: module
+- url: /hacsfiles/bar-card/bar-card.js
+  type: module
+- url: /hacsfiles/lovelace-card-mod/card-mod.js
+  type: module
