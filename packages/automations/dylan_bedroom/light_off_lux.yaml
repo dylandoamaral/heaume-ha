@@ -5,7 +5,7 @@ description: "Turn off my hue light automatically when light."
 trigger:
   - platform: numeric_state
     entity_id: sensor.hue_motion_sensor_1_light_level
-    above: 100
+    above: 40
 condition:
   condition: and
   conditions:

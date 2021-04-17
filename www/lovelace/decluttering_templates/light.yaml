@@ -1,9 +1,9 @@
 ---
 card:
   type: custom:button-card
-  entity: '[[entity]]'
-  name: '[[name]]'
-  icon: '[[icon]]'
+  entity: "[[entity]]"
+  name: "[[name]]"
+  icon: "[[icon]]"
   show_state: true
   styles:
     card:
@@ -27,9 +27,66 @@ card:
       - justify-self: start
       - font-size: 12px
   state:
-    - value: 'off'
+    - value: "off"
       styles:
         card:
           - filter: opacity(50%)
         icon:
           - filter: grayscale(100%)
+  hold_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      deviceID:
+        - this
+      title: Lumière
+      style:
+        $: |
+          .mdc-dialog .mdc-dialog__container {
+            width: 100%;                                         
+          }
+          .mdc-dialog .mdc-dialog__container .mdc-dialog__surface {
+            width:100%;
+            box-shadow:none;               
+          }
+        .: |
+          :host {
+            --mdc-theme-surface: rgba(0,0,0,0);
+            --secondary-background-color: rgba(0,0,0,0);
+            --ha-card-background: none;
+            --ha-card-box-shadow: none;
+            --mdc-dialog-scrim-color: rgba(0,0,0,0.8);
+            --mdc-dialog-min-height: 100%;
+            --mdc-dialog-min-width: 100%;
+            --mdc-dialog-max-width: 100%;
+          }
+          mwc-icon-button {
+            color: #FFF;
+          }
+      card:
+        type: custom:light-popup-card
+        entity: "[[entity]]"
+        icon: mdi:lightbulb
+        brightnessWidth: 150px
+        brightnessHeight: 400px
+        switchWidth: 150px
+        switchHeight: 400px
+        actions:
+          - service: light.turn_on
+            service_data:
+              entity_id: "[[entity]]"
+              brightness: 255
+            color: "#FFF7EB"
+            name: Lumineux
+          - service: light.turn_on
+            service_data:
+              entity_id: "[[entity]]"
+              brightness: 122
+            color: "#E3E1B7"
+            name: Atténué
+          - service: light.turn_on
+            service_data:
+              entity_id: "[[entity]]"
+              brightness: 10
+            color: "#B69E7B"
+            name: Veilleuse

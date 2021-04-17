@@ -1,0 +1,19 @@
+---
+title: Batteries
+path: batteries
+cards:
+  - type: vertical-stack
+    title: "\U0001F6CF️️ Chambre de Dylan"
+    cards:
+      - type: custom:battery-state-card
+        color_gradient:
+          - "#C66445" # red
+          - "#C6B145" # yellow
+          - "#45C669" # green
+        entities:
+          - entity: sensor.ble_battery_dylan_bedroom
+            name: "Temperature"
+          - entity: sensor.veggie_current_battery
+            name: "Veggie"
+          - entity: sensor.hue_smart_button_1_battery_level
+            name: "Smart boutton"

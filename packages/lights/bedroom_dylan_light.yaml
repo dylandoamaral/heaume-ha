@@ -1,6 +1,6 @@
 ---
+platform: group
 name: Bedroom Dylan Light
 entities:
   - light.hue_white_lamp_1
   - light.hue_white_lamp_3
-icon: mdi:lightbulb

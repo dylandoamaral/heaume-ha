@@ -5,7 +5,7 @@ description: "Turn on my hue light automatically when dark."
 trigger:
   - platform: numeric_state
     entity_id: sensor.hue_motion_sensor_1_light_level
-    below: 100
+    below: 40
 condition:
   condition: and
   conditions:

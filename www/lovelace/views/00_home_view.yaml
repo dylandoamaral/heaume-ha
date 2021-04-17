@@ -7,9 +7,9 @@ cards:
   - type: vertical-stack
     title: "\U0001F468‍\U0001F469‍\U0001F467‍\U0001F466 Accueil"
     cards:
-      - type: 'custom:weather-card'
+      - type: "custom:weather-card"
         entity: weather.home
-        number_of_forecasts: '5'
+        number_of_forecasts: "5"
   - type: vertical-stack
     title: "\U0001F6CF️️ Chambre de Dylan"
     cards:
@@ -48,7 +48,7 @@ cards:
                 - justify-self: start
                 - font-size: 12px
             state:
-              - value: 'off'
+              - value: "off"
                 styles:
                   card:
                     - filter: opacity(50%)
@@ -58,7 +58,7 @@ cards:
             template: light
             variables:
               - name: Lumières
-              - entity: group.bedroom_dylan_light
+              - entity: light.bedroom_dylan_light
               - icon: mdi:lightbulb
           - type: custom:button-card
             entity: binary_sensor.hue_motion_sensor_1_motion
@@ -74,8 +74,7 @@ cards:
                   monsieur.
                 data:
                   type: tts
-                target:
-                  media_player.echo_dot_dylan
+                target: media_player.echo_dot_dylan
             styles:
               card:
                 - padding: 10px
@@ -98,7 +97,7 @@ cards:
                 - justify-self: start
                 - font-size: 12px
             state:
-              - value: 'off'
+              - value: "off"
                 styles:
                   card:
                     - filter: opacity(50%)
@@ -106,29 +105,20 @@ cards:
                     - filter: grayscale(100%)
       - type: horizontal-stack
         cards:
-          - type: 'custom:mini-graph-card'
+          - type: "custom:mini-graph-card"
             name: Temperature
             entities:
               - sensor.ble_temperature_dylan_bedroom
-            line_color: ' #f56f42'
+            line_color: " #f56f42"
             line_width: 10
             font_size: 75
             points_per_hour: 1
             animate: true
-          - type: 'custom:mini-graph-card'
+          - type: "custom:mini-graph-card"
             name: Humidité
             entities:
               - sensor.ble_humidity_dylan_bedroom
-            line_color: ' #429bf5'
-            line_width: 10
-            font_size: 75
-            points_per_hour: 1
-            animate: true
-          - type: 'custom:mini-graph-card'
-            name: Battery
-            entities:
-              - sensor.ble_battery_dylan_bedroom
-            line_color: ' #FFE033'
+            line_color: " #429bf5"
             line_width: 10
             font_size: 75
             points_per_hour: 1
@@ -136,13 +126,11 @@ cards:
       - type: entities
         entities:
           - entity: sensor.veggie_current_moisture
-            type: 'custom:multiple-entity-row'
+            type: "custom:multiple-entity-row"
             name: Veggie
             secondary_info: last-changed
-            icon: 'mdi:sprout'
+            icon: "mdi:sprout"
             show_state: false
             entities:
               - entity: sensor.veggie_current_moisture
                 name: Humidité
-              - entity: sensor.veggie_current_battery
-                name: Batterie
