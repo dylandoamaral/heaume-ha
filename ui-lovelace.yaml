@@ -7,3 +7,4 @@ views:
   - !include www/lovelace/views/00_home_view.yaml
   - !include www/lovelace/views/01_server_view.yaml
   - !include www/lovelace/views/02_dylan_view.yaml
+  - !include www/lovelace/views/03_battery_view.yaml
