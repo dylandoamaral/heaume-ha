@@ -1,0 +1,6 @@
+---
+browser_mod:
+  prefix: "browser_"
+  devices:
+    1acdfea8-69b6ee33:
+      name: ippon_laptop

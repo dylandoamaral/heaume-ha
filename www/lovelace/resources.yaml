@@ -19,3 +19,7 @@
   type: module
 - url: /hacsfiles/lovelace-card-mod/card-mod.js
   type: module
+- url: /hacsfiles/battery-state-card/battery-state-card.js
+  type: module
+- url: /hacsfiles/light-popup-card/light-popup-card.js
+  type: module
